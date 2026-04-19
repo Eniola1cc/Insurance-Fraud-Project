@@ -147,9 +147,11 @@ The system enables insurers to:
 ---
 
 ## Next Steps
-- Finalise threshold-based business evaluation  
-- Add explainability (Feature Importance / SHAP)  
-- Build an interactive dashboard (Streamlit or web app)  
+
+- Add explainability using Feature Importance and SHAP
+- Build an interactive dashboard or Streamlit app
+- Create a ranked claims output for investigator review
+- Package the workflow into reusable Python scripts 
 
 ---
 
