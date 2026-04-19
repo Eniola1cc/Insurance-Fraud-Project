@@ -4,6 +4,10 @@
 
 This analysis explores patterns and relationships within the insurance claims dataset to identify potential indicators of fraudulent activity. The goal is to understand key variables that can help prioritise high-risk claims for investigation.
 
+## Objective of Analysis
+
+The purpose of this analysis is to identify patterns and relationships that can help distinguish fraudulent claims from legitimate ones, supporting the development of a fraud detection model.
+
 ---
 
 ## 2. Dataset Summary

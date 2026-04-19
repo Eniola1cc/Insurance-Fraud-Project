@@ -67,6 +67,12 @@ Short policy durations and high claim-to-premium ratios are potential indicators
 
 ---
 
+## Data Limitations
+
+- Dataset size is relatively small (1,000 records)
+- Some missing values may impact model performance
+- Dataset may not fully represent real-world fraud scenarios
+
 ## 7. Conclusion
 
 The dataset shows clear behavioural and financial patterns associated with fraud. These insights form the foundation for feature engineering and predictive modeling in subsequent phases.
