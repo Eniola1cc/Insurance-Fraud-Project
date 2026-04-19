@@ -1,0 +1,4 @@
+review_threshold,claims_reviewed_pct,fraud_capture_rate,workload_reduction
+Top 10%,0.1,0.2041,0.9
+Top 20%,0.2,0.5102,0.8
+Top 30%,0.3,0.7143,0.7
