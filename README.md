@@ -55,7 +55,6 @@ Insurance-Fraud-Project/
 ```
 
 
-
 ---
 
 ## Workflow
