@@ -41,7 +41,8 @@ Insurance-Fraud-Project/
 ├── docs/
 │   ├── business_problem.md
 │   ├── data_understanding.md
-│   └── modeling_summary.md
+│   ├── modeling_summary.md
+│   └── risk_scoring_summary.md
 ├── models/
 ├── notebooks/
 │   ├── 01_data_exploration.ipynb
@@ -50,7 +51,12 @@ Insurance-Fraud-Project/
 ├── reports/
 │   ├── model_results.csv
 │   ├── business_metrics.csv
-│   └── figures/
+│   ├── business_summary.md
+│   ├── ranked_claims.csv
+│   ├── final_prioritised_claims.csv
+│   ├── risk_band_summary.csv
+│   └── top_20_priority_claims.csv
+├── app.py
 └── README.md
 ```
 
@@ -110,6 +116,25 @@ The baseline model comparison showed:
 **Key Insight:**  
 - Logistic Regression is suitable for **classification and interpretability**  
 - Random Forest is better for **risk ranking and prioritisation**
+
+---
+
+## Risk Prioritisation Output
+In Phase 3, the fraud model output was transformed into a practical claims review workflow by:
+
+- converting fraud probabilities into a 0–100 risk score,
+- grouping claims into High, Medium, and Low risk bands,
+- assigning recommended investigation actions,
+- generating a final prioritised claims file.
+
+## Dashboard
+A Streamlit dashboard was built to display:
+
+- model comparison results,
+- threshold-based fraud capture analysis,
+- risk band summaries,
+- top priority claims,
+- a downloadable prioritised claims table.
 
 ---
 
