@@ -127,6 +127,13 @@ In Phase 3, the fraud model output was transformed into a practical claims revie
 - assigning recommended investigation actions,
 - generating a final prioritised claims file.
 
+## Business Impact
+
+- Captures **71% of fraud** by reviewing only **30% of claims**
+- Reduces investigation workload by **70%**
+- Enables prioritised fraud detection workflow
+- Improves investigator efficiency and resource allocation
+
 ## Dashboard
 A Streamlit dashboard was built to display:
 
