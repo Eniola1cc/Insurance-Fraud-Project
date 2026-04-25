@@ -109,7 +109,7 @@ The project includes an interactive dashboard that allows users to:
 - download investigation-ready data
 
 ### 🔍 Dashboard Preview
-![Dashboard](reports/figures/dashboard.png)
+![Dashboard](reports/dashboard.png)
 
 ---
 
