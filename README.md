@@ -262,6 +262,16 @@ A Streamlit dashboard was built to display:
 - a downloadable prioritised claims table.
 
 ---
+## Model Explainability (SHAP)
+
+The model includes SHAP (SHapley Additive exPlanations) to improve transparency and support business decision-making.
+
+### SHAP Summary Plot
+![SHAP Summary](reports/figures/shap_summary_plot.png)
+
+### SHAP Feature Importance
+![SHAP Importance](reports/figures/shap_feature_importance.png)
+
 
 ## Business Value
 This project focuses on **decision support**, not just prediction.
