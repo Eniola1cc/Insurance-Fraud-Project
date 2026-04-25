@@ -1,12 +1,16 @@
 # 🚨 Insurance Fraud Risk Prioritisation System
 
 ## 📌 Project Overview
-This project builds a **fraud risk prioritisation system** for insurance claims, designed to help investigators focus on the most suspicious cases first.
 
-Instead of simply predicting whether a claim is fraudulent, the system:
-- assigns a **fraud risk score** to each claim,
-- ranks claims by risk level,
-- enables **prioritised investigation** of high-risk cases.
+This project simulates a real-world Insurance Fraud Analytics system used in the UK financial services industry.
+
+It goes beyond model building by focusing on:
+- Risk-based prioritisation of claims
+- Business decision support
+- Trade-off analysis between fraud detection and operational workload
+- Model explainability for investigation teams
+
+The system is designed to reflect how fraud analytics is implemented in production environments.
 
 ---
 
@@ -76,12 +80,15 @@ The model was evaluated not just by accuracy, but by **business impact**:
 ---
 
 ## 💼 Business Impact
+This system helps insurance companies prioritise high-risk claims for investigation.
 
-- Captures **71% of fraud** by reviewing only **30% of claims**
-- Reduces investigation workload by **70%**
-- Enables **risk-based prioritisation**
-- Improves investigator efficiency and decision-making
+- High-risk claims: ~63% fraud rate
+- Medium-risk claims: ~45% fraud rate
+- Low-risk claims: ~9% fraud rate
 
+This shows that fraud is heavily concentrated in high-risk segments, allowing investigators to focus on the most impactful cases.
+
+The system significantly reduces workload by enabling teams to prioritise fewer, higher-risk claims instead of reviewing all claims equally.
 ---
 
 ## 🧠 Risk Scoring System
