@@ -1,65 +1,183 @@
-# Insurance Fraud Risk Prioritisation System
+# 🚨 Insurance Fraud Risk Prioritisation System
 
-## Project Overview
-This project builds a data-driven system for identifying and prioritising potentially fraudulent insurance claims. Instead of treating fraud detection as a simple classification problem, the project focuses on business decision-making: ranking claims by fraud risk so investigators can review the most suspicious cases first.
+## 📌 Project Overview
+This project builds a **fraud risk prioritisation system** for insurance claims, designed to help investigators focus on the most suspicious cases first.
 
-The goal is to help insurance companies improve fraud detection efficiency, reduce wasted investigative effort, and support better allocation of limited fraud investigation resources.
+Instead of simply predicting whether a claim is fraudulent, the system:
+- assigns a **fraud risk score** to each claim,
+- ranks claims by risk level,
+- enables **prioritised investigation** of high-risk cases.
 
-## Business Problem
-Insurance companies process large numbers of claims, but only a limited proportion can be manually reviewed. Without an intelligent prioritisation system, high-risk claims may be missed while low-risk claims consume investigator time.
+---
 
-This project addresses that challenge by:
-- predicting the likelihood that a claim is fraudulent,
-- assigning a fraud risk score,
-- ranking claims from highest to lowest risk,
-- analysing how much fraud can be captured when only the top 10%, 20%, or 30% of claims are reviewed.
+## 🎯 Business Problem
+Insurance companies process thousands of claims, but investigation resources are limited. Reviewing every claim manually is inefficient and leads to:
 
-## Project Objectives
-The main objectives are to:
-- understand fraud patterns in historical claims data,
-- engineer fraud-relevant features,
-- compare multiple machine learning models,
-- select a suitable model for fraud prioritisation,
-- evaluate both statistical performance and business usefulness.
+- missed fraud cases,
+- wasted effort on low-risk claims,
+- delayed investigation workflows.
 
-## Dataset
-The dataset contains 1,000 insurance claims and 40 original features covering customer details, policy information, and incident characteristics. The target variable is `fraud_reported`, indicating whether a claim is fraudulent or not.
+This project addresses that problem by transforming fraud detection into a **decision-support system** that prioritises claims based on risk.
 
-Key dataset observations:
-- Fraud rate is approximately 24.7%
-- The dataset is imbalanced
-- Higher claim amounts and missing police reports appear associated with fraud
-- Short policy duration may be an indicator of suspicious behaviour
+---
+
+## 💡 Solution Approach
+
+The system combines data processing, machine learning, and business logic to create a practical fraud prioritisation workflow.
+
+### 🔹 Key Capabilities
+- Predicts fraud likelihood for each claim  
+- Converts predictions into a **0–100 risk score**  
+- Groups claims into **Low / Medium / High risk bands**  
+- Ranks claims for investigation priority  
+- Measures **fraud capture vs workload trade-offs**  
+- Provides a **dashboard for business users**
+
+---
+
+## ⚙️ Tech Stack
+
+- **Python** (Pandas, NumPy)
+- **Scikit-learn** (Logistic Regression, Random Forest, Gradient Boosting)
+- **Matplotlib** (visualisation)
+- **Streamlit** (dashboard)
+- **Joblib** (model persistence)
+
+---
+
+## 📊 Model Development
+
+### Models Trained
+- Logistic Regression
+- Random Forest
+- Gradient Boosting
+
+### Model Selection
+- Logistic Regression selected for:
+  - best **F1-score balance**
+  - higher **recall** (important for fraud detection)
+  - interpretability
+
+- Random Forest used for:
+  - strong **ranking capability (ROC-AUC)**
+
+---
+
+## 📈 Business Evaluation
+
+The model was evaluated not just by accuracy, but by **business impact**:
+
+| Review Threshold | Fraud Capture | Workload Reduction |
+|-----------------|-------------|--------------------|
+| Top 10%         | 20.4%       | 90%                |
+| Top 20%         | 51.0%       | 80%                |
+| Top 30%         | 71.4%       | 70%                |
+
+---
+
+## 💼 Business Impact
+
+- Captures **71% of fraud** by reviewing only **30% of claims**
+- Reduces investigation workload by **70%**
+- Enables **risk-based prioritisation**
+- Improves investigator efficiency and decision-making
+
+---
+
+## 🧠 Risk Scoring System
+
+### Risk Bands
+- **High Risk** → Immediate Review  
+- **Medium Risk** → Secondary Review  
+- **Low Risk** → Monitor  
+
+Each claim is:
+- scored (0–100),
+- ranked,
+- assigned an investigation action.
+
+---
+
+## 📊 Dashboard (Streamlit)
+
+The project includes an interactive dashboard that allows users to:
+
+- view prioritised claims
+- filter by risk band and action
+- analyse fraud capture performance
+- compare model performance
+- download investigation-ready data
+
+### 🔍 Dashboard Preview
+![Dashboard](reports/figures/dashboard.png)
+
+---
+
+## 🔍 Explainability
+
+The system includes model explainability through:
+
+- Feature importance (top fraud drivers)
+- Identification of key variables influencing fraud risk
+
+---
+
 
 ## Project Structure
 ```text
 Insurance-Fraud-Project/
 │
 ├── data/
-│   ├── raw/
-│   └── processed/
-├── docs/
-│   ├── business_problem.md
-│   ├── data_understanding.md
-│   ├── modeling_summary.md
-│   └── risk_scoring_summary.md
-├── models/
+│ ├── raw/
+│ └── processed/
+│
 ├── notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   └── 03_model_training.ipynb
+│ ├── 01_data_exploration.ipynb
+│ ├── 02_feature_engineering.ipynb
+│ ├── 03_model_training.ipynb
+│ └── 04_risk_scoring_and_dashboard_prep.ipynb
+│
+├── models/
+│ └── fraud_model_pipeline.pkl
+│
 ├── reports/
-│   ├── model_results.csv
-│   ├── business_metrics.csv
-│   ├── business_summary.md
-│   ├── ranked_claims.csv
-│   ├── final_prioritised_claims.csv
-│   ├── risk_band_summary.csv
-│   └── top_20_priority_claims.csv
+│ ├── model_results.csv
+│ ├── business_metrics.csv
+│ ├── final_prioritised_claims.csv
+│ ├── risk_band_summary.csv
+│ ├── top_20_priority_claims.csv
+│ └── figures/
+│ ├── confusion_matrix.png
+│ ├── roc_curve.png
+│ └── feature_importance.png
+│
+├── docs/
+│ ├── business_problem.md
+│ ├── data_understanding.md
+│ ├── modeling_summary.md
+│ └── risk_scoring_summary.md
+│
 ├── app.py
+├── requirements.txt
 └── README.md
 ```
+---
 
+
+
+---
+
+## 🚀 How to Run the Project
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/Eniola1cc/Insurance-Fraud-Project.git
+cd Insurance-Fraud-Project
+2. Install dependencies
+pip install -r requirements.txt
+3. Run the dashboard
+streamlit run app.py
+```
 
 ---
 
@@ -177,12 +295,28 @@ The system enables insurers to:
 
 ---
 
-## Next Steps
+## Project Status
 
-- Add explainability using Feature Importance and SHAP
-- Build an interactive dashboard or Streamlit app
-- Create a ranked claims output for investigator review
-- Package the workflow into reusable Python scripts 
+This project is almost complete and includes:
+
+- Data cleaning and preprocessing
+- Exploratory data analysis
+- Feature engineering
+- Fraud detection modelling
+- Risk scoring and ranking
+- Top 10%, 20%, and 30% fraud capture analysis
+- Business impact reporting
+- Streamlit dashboard
+- SQL-based analysis queries
+- Model explainability using SHAP
+
+## How to Run the Project
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
