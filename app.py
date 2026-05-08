@@ -273,3 +273,14 @@ st.markdown(
 This system supports fraud investigation prioritisation by turning model outputs into a business-facing review workflow.
 """
 )
+
+st.subheader("Why this claim is high risk")
+
+selected_claim_series = selected_claim.copy()
+
+# Drop non-numeric columns for explanation
+numeric_data = selected_claim_series.select_dtypes(include=["int64", "float64"])
+
+st.write(
+    numeric_data.sort_values(ascending=False).head(10)
+)

@@ -302,6 +302,31 @@ The system enables insurers to:
 
 ---
 
+## SQL + Python Data Pipeline
+
+To make the project closer to a real-world fraud analytics workflow, the raw insurance claims CSV was loaded into a SQLite database.
+
+The SQL layer is used to perform business-focused analysis before modelling, including:
+
+- Fraud distribution analysis
+- Fraud rate by incident type
+- Average claim amount by fraud status
+- Fraud rate by police report availability
+
+Pipeline flow:
+
+```text
+Raw CSV → SQLite Database → SQL Analysis → CSV Outputs → Python Modelling/Dashboard
+```
+
+### Example SQL Output
+
+Fraud distribution and incident-type analysis are generated and saved as CSV files in:
+
+reports/sql_outputs/
+
+These outputs provide business-level insights prior to modelling.
+
 ## Tools Used
 - Python  
 - Pandas  
