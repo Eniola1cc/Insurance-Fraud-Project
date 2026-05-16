@@ -339,7 +339,7 @@ These outputs provide business-level insights prior to modelling.
 
 ## Project Status
 
-This project is almost complete and includes:
+This project is complete as a portfolio-ready fraud risk prioritisation system and includes:
 
 - Data cleaning and preprocessing
 - Exploratory data analysis
