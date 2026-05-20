@@ -2,7 +2,7 @@
 
 ## 📌 Project Overview
 
-This project simulates a real-world Insurance Fraud Analytics system used in the UK financial services industry.
+This project simulates a fraud risk prioritisation workflow relevant to regulated insurance environments, with UK job-market framing around fraud analytics, risk scoring, investigation prioritisation, and workload reduction.
 
 It goes beyond model building by focusing on:
 - Risk-based prioritisation of claims
@@ -150,7 +150,8 @@ Insurance-Fraud-Project/
 ├── reports/
 │ ├── model_results.csv
 │ ├── business_metrics.csv
-│ ├── final_prioritised_claims.csv
+│ ├── evaluation_prioritised_claims.csv
+│ ├── full_prioritised_claims.csv
 │ ├── risk_band_summary.csv
 │ ├── top_20_priority_claims.csv
 │ └── figures/
@@ -176,13 +177,19 @@ Insurance-Fraud-Project/
 
 ## 🚀 How to Run the Project
 
-### 1. Clone the repo
+### 1. Clone the repository
 ```bash
 git clone https://github.com/Eniola1cc/Insurance-Fraud-Project.git
 cd Insurance-Fraud-Project
-2. Install dependencies
+```
+
+### 2. Install dependencies
+```bash
 pip install -r requirements.txt
-3. Run the dashboard
+```
+
+### 3. Run the dashboard
+```bash
 streamlit run app.py
 ```
 
@@ -250,7 +257,9 @@ In Phase 3, the fraud model output was transformed into a practical claims revie
 - converting fraud probabilities into a 0–100 risk score,
 - grouping claims into High, Medium, and Low risk bands,
 - assigning recommended investigation actions,
-- generating a final prioritised claims file.
+- generating two outputs:
+  - `evaluation_prioritised_claims.csv` for held-out test-set evaluation and business metrics,
+  - `full_prioritised_claims.csv` for ranking the full claims population for dashboard and operational prioritisation.
 
 ## Business Impact
 
@@ -352,15 +361,6 @@ This project is complete as a portfolio-ready fraud risk prioritisation system a
 - SQL-based analysis queries
 - Model explainability using SHAP
 
-## How to Run the Project
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
 
 ## Author
 **Adesanmi Eniola Adetoba**

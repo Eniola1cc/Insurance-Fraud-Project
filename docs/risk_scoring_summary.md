@@ -12,7 +12,7 @@ The following steps were completed in this phase:
 - Ranked claims from highest to lowest risk
 - Grouped claims into risk bands: High, Medium, and Low
 - Assigned recommended investigation actions based on risk level
-- Produced a final prioritised claims file for operational use
+- Produced separate evaluation and full-population prioritised claims files
 
 ## 3. Risk Scoring Logic
 The fraud model produces a probability score between 0 and 1. This was converted into a risk score between 0 and 100 for easier business interpretation.
@@ -40,7 +40,8 @@ The prioritisation system helps to:
 ## 5. Final Outputs
 The key outputs of this phase are:
 
-- `final_prioritised_claims.csv`
+- `evaluation_prioritised_claims.csv`
+- `full_prioritised_claims.csv`
 - `risk_band_summary.csv`
 - `top_20_priority_claims.csv`
 
