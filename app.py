@@ -25,14 +25,14 @@ def format_percentage(value):
 # -------------------------------
 # Load data
 # -------------------------------
-final_claims = load_csv("reports/final_prioritised_claims.csv")
+final_claims = load_csv("reports/full_prioritised_claims.csv")
 business_metrics = load_csv("reports/business_metrics.csv")
 model_results = load_csv("reports/model_results.csv")
 risk_band_summary = load_csv("reports/risk_band_summary.csv")
 top_20_claims = load_csv("reports/top_20_priority_claims.csv")
 
 required_files = {
-    "reports/final_prioritised_claims.csv": final_claims,
+    "reports/full_prioritised_claims.csv": final_claims,
     "reports/business_metrics.csv": business_metrics,
     "reports/model_results.csv": model_results,
     "reports/risk_band_summary.csv": risk_band_summary,
@@ -58,6 +58,8 @@ focus on the most suspicious claims first.
 
 The system combines machine learning model outputs, business threshold analysis, and ranked claims scoring
 to support more efficient fraud investigation.
+
+Business metrics are evaluated on a held-out test set, while the prioritised claims table ranks the full claims population.
 """
 )
 
@@ -201,7 +203,7 @@ else:
 # -------------------------------
 # Explain selected claim
 # -------------------------------
-st.subheader("Why This Claim Is High Risk")
+st.subheader("Selected Claim Risk Factors")
 
 if filtered_claims.empty:
     st.info("Select at least one risk band and action to view claim details.")
@@ -221,6 +223,10 @@ else:
     col_b.metric("Risk Score", f"{selected_claim['risk_score_100']:.2f}")
     col_c.metric("Risk Band", selected_claim["risk_band"])
 
+    st.markdown(
+        "This section highlights key claim attributes for investigator review. "
+        "SHAP global explainability is provided in the model explainability section."
+    )
     st.markdown("### Selected Claim Details")
 
     important_columns = [
@@ -272,15 +278,4 @@ st.markdown(
 **Project Purpose:**  
 This system supports fraud investigation prioritisation by turning model outputs into a business-facing review workflow.
 """
-)
-
-st.subheader("Why this claim is high risk")
-
-selected_claim_series = selected_claim.copy()
-
-# Drop non-numeric columns for explanation
-numeric_data = selected_claim_series.select_dtypes(include=["int64", "float64"])
-
-st.write(
-    numeric_data.sort_values(ascending=False).head(10)
 )
