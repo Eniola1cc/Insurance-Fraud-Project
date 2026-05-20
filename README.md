@@ -45,7 +45,9 @@ The system combines data processing, machine learning, and business logic to cre
 - **Scikit-learn** (Logistic Regression, Random Forest, Gradient Boosting)
 - **Matplotlib** (visualisation)
 - **Streamlit** (dashboard)
+- **SHAP** (model explainability)
 - **Joblib** (model persistence)
+- **SQLite** (SQL analysis)
 
 ---
 
@@ -64,6 +66,9 @@ The system combines data processing, machine learning, and business logic to cre
 
 - Random Forest used for:
   - strong **ranking capability (ROC-AUC)**
+
+### Model Used in Risk Scoring Workflow
+The saved project pipeline (`models/fraud_model_pipeline.pkl`) is the model used for the risk scoring outputs and dashboard workflows.
 
 ---
 
@@ -89,6 +94,7 @@ This system helps insurance companies prioritise high-risk claims for investigat
 This shows that fraud is heavily concentrated in high-risk segments, allowing investigators to focus on the most impactful cases.
 
 The system significantly reduces workload by enabling teams to prioritise fewer, higher-risk claims instead of reviewing all claims equally.
+
 ---
 
 ## 🧠 Risk Scoring System
@@ -122,56 +128,55 @@ The project includes an interactive dashboard that allows users to:
 
 ## 🔍 Explainability
 
-The system includes model explainability through:
+The system includes model explainability through SHAP:
 
-- Feature importance (top fraud drivers)
-- Identification of key variables influencing fraud risk
+- `reports/figures/shap_feature_importance.png`
+- `reports/figures/shap_summary_plot.png`
 
 ---
 
-
-## Project Structure
+## 🗂️ Project Structure
 ```text
 Insurance-Fraud-Project/
-│
-├── data/
-│ ├── raw/
-│ └── processed/
-│
-├── notebooks/
-│ ├── 01_data_exploration.ipynb
-│ ├── 02_feature_engineering.ipynb
-│ ├── 03_model_training.ipynb
-│ └── 04_risk_scoring_and_dashboard_prep.ipynb
-│
-├── models/
-│ └── fraud_model_pipeline.pkl
-│
-├── reports/
-│ ├── model_results.csv
-│ ├── business_metrics.csv
-│ ├── evaluation_prioritised_claims.csv
-│ ├── full_prioritised_claims.csv
-│ ├── risk_band_summary.csv
-│ ├── top_20_priority_claims.csv
-│ └── figures/
-│ ├── confusion_matrix.png
-│ ├── roc_curve.png
-│ └── feature_importance.png
-│
-├── docs/
-│ ├── business_problem.md
-│ ├── data_understanding.md
-│ ├── modeling_summary.md
-│ └── risk_scoring_summary.md
-│
 ├── app.py
 ├── requirements.txt
-└── README.md
+├── README.md
+├── data/
+│   ├── raw/
+│   └── processed/
+├── database/
+│   └── insurance_fraud.db
+├── docs/
+│   ├── business_problem.md
+│   ├── data_understanding.md
+│   ├── eda_insights.md
+│   ├── explainability.md
+│   ├── modeling_summary.md
+│   └── risk_scoring_summary.md
+├── models/
+│   └── fraud_model_pipeline.pkl
+├── notebooks/
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_feature_engineering.ipynb
+│   ├── 03_model_training.ipynb
+│   └── 04_risk_scoring_and_dashboard_prep.ipynb
+├── reports/
+│   ├── business_metrics.csv
+│   ├── business_summary.md
+│   ├── dashboard_summary.csv
+│   ├── evaluation_prioritised_claims.csv
+│   ├── final_prioritised_claims.csv
+│   ├── full_prioritised_claims.csv
+│   ├── model_results.csv
+│   ├── ranked_claims.csv
+│   ├── risk_band_summary.csv
+│   ├── top_20_priority_claims.csv
+│   ├── figures/
+│   └── sql_outputs/
+└── src/
+    ├── create_insurance_database.py
+    └── run_sql_analysis.py
 ```
----
-
-
 
 ---
 
@@ -183,184 +188,45 @@ git clone https://github.com/Eniola1cc/Insurance-Fraud-Project.git
 cd Insurance-Fraud-Project
 ```
 
-### 2. Install dependencies
+### 2. Create and activate a virtual environment (recommended)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the dashboard
+### 4. Launch dashboard
 ```bash
 streamlit run app.py
 ```
 
 ---
 
-## Workflow
+## 🔁 Reproducible Workflow
 
-### Phase 1: Foundation
-- Defined the business problem  
-- Explored the dataset  
-- Identified fraud distribution and data quality issues  
-- Created initial engineered features such as:
-  - `policy_duration_days`
-  - `claim_to_premium_ratio`
-
----
-
-### Phase 2: Feature Engineering and Modeling
-- Built fraud-relevant engineered features  
-- Trained baseline models:
-  - Logistic Regression  
-  - Random Forest  
-  - Gradient Boosting  
-
-- Evaluated models using:
-  - Precision  
-  - Recall  
-  - F1 Score  
-  - ROC-AUC  
+1. **Explore data**: `notebooks/01_data_exploration.ipynb`  
+2. **Engineer features**: `notebooks/02_feature_engineering.ipynb`  
+3. **Train and evaluate models**: `notebooks/03_model_training.ipynb`  
+4. **Generate ranked/risk-scored outputs**: `notebooks/04_risk_scoring_and_dashboard_prep.ipynb`  
+5. **Run SQL analysis outputs** (optional):
+   ```bash
+   python src/create_insurance_database.py
+   python src/run_sql_analysis.py
+   ```
+6. **Open dashboard** with `streamlit run app.py`
 
 ---
 
-### Phase 3: Risk Prioritisation
-- Converted model outputs into **fraud risk scores**  
-- Ranked claims from highest to lowest risk  
-- Evaluated fraud capture at different review thresholds  
-- Prepared outputs for business decision-making and dashboards  
+## 📚 Additional Documentation
 
----
-
-## Model Performance Summary
-The baseline model comparison showed:
-
-- **Logistic Regression**  
-  - Strong balance between precision and recall  
-  - Best overall F1 Score  
-  - Highly interpretable  
-
-- **Random Forest**  
-  - Highest ROC-AUC  
-  - Best for ranking claims by fraud likelihood  
-
-- **Gradient Boosting**  
-  - Moderate performance between both models  
-
-**Key Insight:**  
-- Logistic Regression is suitable for **classification and interpretability**  
-- Random Forest is better for **risk ranking and prioritisation**
-
----
-
-## Risk Prioritisation Output
-In Phase 3, the fraud model output was transformed into a practical claims review workflow by:
-
-- converting fraud probabilities into a 0–100 risk score,
-- grouping claims into High, Medium, and Low risk bands,
-- assigning recommended investigation actions,
-- generating two outputs:
-  - `evaluation_prioritised_claims.csv` for held-out test-set evaluation and business metrics,
-  - `full_prioritised_claims.csv` for ranking the full claims population for dashboard and operational prioritisation.
-
-## Business Impact
-
-- Captures **71% of fraud** by reviewing only **30% of claims**
-- Reduces investigation workload by **70%**
-- Enables prioritised fraud detection workflow
-- Improves investigator efficiency and resource allocation
-
-## Dashboard
-A Streamlit dashboard was built to display:
-
-- model comparison results,
-- threshold-based fraud capture analysis,
-- risk band summaries,
-- top priority claims,
-- a downloadable prioritised claims table.
-
----
-## Model Explainability (SHAP)
-
-The model includes SHAP (SHapley Additive exPlanations) to improve transparency and support business decision-making.
-
-### SHAP Summary Plot
-![SHAP Summary](reports/figures/shap_summary_plot.png)
-
-### SHAP Feature Importance
-![SHAP Importance](reports/figures/shap_feature_importance.png)
-
-
-## Business Value
-This project focuses on **decision support**, not just prediction.
-
-The system enables insurers to:
-
-- detect more fraud within limited review capacity  
-- reduce manual workload  
-- prioritise high-risk claims effectively  
-- improve operational efficiency  
-
----
-
-## Key Deliverables
-- Fraud risk prioritisation model  
-- Ranked claims by fraud score  
-- Fraud capture analysis at different thresholds  
-- Model comparison report  
-- Visual evaluation outputs  
-- End-to-end GitHub portfolio project  
-
----
-
-## SQL + Python Data Pipeline
-
-To make the project closer to a real-world fraud analytics workflow, the raw insurance claims CSV was loaded into a SQLite database.
-
-The SQL layer is used to perform business-focused analysis before modelling, including:
-
-- Fraud distribution analysis
-- Fraud rate by incident type
-- Average claim amount by fraud status
-- Fraud rate by police report availability
-
-Pipeline flow:
-
-```text
-Raw CSV → SQLite Database → SQL Analysis → CSV Outputs → Python Modelling/Dashboard
-```
-
-### Example SQL Output
-
-Fraud distribution and incident-type analysis are generated and saved as CSV files in:
-
-reports/sql_outputs/
-
-These outputs provide business-level insights prior to modelling.
-
-## Tools Used
-- Python  
-- Pandas  
-- NumPy  
-- scikit-learn  
-- Jupyter Notebook  
-- Matplotlib  
-
----
-
-## Project Status
-
-This project is complete as a portfolio-ready fraud risk prioritisation system and includes:
-
-- Data cleaning and preprocessing
-- Exploratory data analysis
-- Feature engineering
-- Fraud detection modelling
-- Risk scoring and ranking
-- Top 10%, 20%, and 30% fraud capture analysis
-- Business impact reporting
-- Streamlit dashboard
-- SQL-based analysis queries
-- Model explainability using SHAP
-
-
-## Author
-**Adesanmi Eniola Adetoba**
+- `docs/business_problem.md`
+- `docs/data_understanding.md`
+- `docs/eda_insights.md`
+- `docs/modeling_summary.md`
+- `docs/risk_scoring_summary.md`
+- `docs/explainability.md`
+- `reports/business_summary.md`
