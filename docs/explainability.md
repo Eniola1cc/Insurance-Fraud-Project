@@ -23,3 +23,10 @@ SHAP (SHapley Additive exPlanations) was used to identify the features that cont
 The explainability output allows fraud teams to review high-risk claims with supporting evidence, instead of relying only on a black-box model score.
 
 This makes the solution more suitable for real-world fraud analytics and insurance investigation workflows.
+
+## Explainability Artifacts
+
+Generated explainability outputs are available in:
+
+- `reports/figures/shap_feature_importance.png`
+- `reports/figures/shap_summary_plot.png`

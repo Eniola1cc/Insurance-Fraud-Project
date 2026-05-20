@@ -85,3 +85,7 @@ This supports the project goal of building a fraud risk prioritisation system ra
 
 ## 8. Next Step
 The next step is to operationalise the model output into a ranked claims review workflow and present results in a dashboard or Streamlit app.
+
+## 9. Model in Use for Scoring
+The saved pipeline file `models/fraud_model_pipeline.pkl` is the model artifact used for risk scoring outputs and dashboard integration in this repository.
+
