@@ -87,9 +87,8 @@ The model was evaluated not just by accuracy, but by **business impact**:
 ## 💼 Business Impact
 This system helps insurance companies prioritise high-risk claims for investigation.
 
-- High-risk claims: ~63% fraud rate
-- Medium-risk claims: ~45% fraud rate
-- Low-risk claims: ~9% fraud rate
+- **Held-out evaluation set (200 claims):** High-risk ~63%, Medium-risk ~45%, Low-risk ~9%
+- **Full prioritised population (1,000 claims):** High-risk ~78%, Medium-risk ~30%, Low-risk ~3%
 
 This shows that fraud is heavily concentrated in high-risk segments, allowing investigators to focus on the most impactful cases.
 
@@ -220,6 +219,19 @@ streamlit run app.py
 6. **Open dashboard** with `streamlit run app.py`
 
 ---
+
+## ⚠️ Limitations & Next Steps
+
+This project uses a structured historical insurance claims dataset for portfolio demonstration purposes. In a real production fraud environment, the system would require:
+
+- larger and more recent claims data,
+- validation on unseen real-world claims,
+- regular model monitoring and retraining,
+- governance review before operational use,
+- audit logging for investigator decisions,
+- integration with claims management systems.
+
+Future improvements could include claim-level SHAP explanations, automated case notes, and live database integration.
 
 ## 📚 Additional Documentation
 
